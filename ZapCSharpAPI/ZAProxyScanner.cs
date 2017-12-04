@@ -87,31 +87,31 @@ namespace ZapCSharpAPI
     }
 
     public void setScannerAttackStrength(string scannerId, string strength) {
-            clientApi.ascan.setScannerAttackStrength(this.apiKey, scannerId, strength, null);
+            clientApi.ascan.setScannerAttackStrength(this.apiKey, scannerId, strength, "");
     }
 
     
     public void setScannerAlertThreshold(String scannerId, String threshold) {
-            clientApi.ascan.setScannerAlertThreshold(this.apiKey, scannerId, threshold, null);
+            clientApi.ascan.setScannerAlertThreshold(this.apiKey, scannerId, threshold, "");
     }
 
     public void setEnableScanners(string ids, bool enabled) {
 
             if(enabled) {
-                clientApi.ascan.enableScanners(this.apiKey, ids, null);
+                clientApi.ascan.enableScanners(this.apiKey, ids, "");
             } else {
-                clientApi.ascan.disableScanners(this.apiKey, ids, null);
+                clientApi.ascan.disableScanners(this.apiKey, ids, "");
             }
     }
 
     public void disableAllScanners() {
             IApiResponse response = clientApi.pscan.setEnabled(this.apiKey, "false");
-            response = clientApi.ascan.disableAllScanners(this.apiKey, null);
+            response = clientApi.ascan.disableAllScanners(this.apiKey, "");
     }
 
     public void enableAllScanners() {
             clientApi.pscan.setEnabled(this.apiKey, "true");
-            clientApi.ascan.enableAllScanners(this.apiKey, null);
+            clientApi.ascan.enableAllScanners(this.apiKey, "");
     }
 
     public void setEnablePassiveScan(bool enabled) {
@@ -143,7 +143,7 @@ namespace ZapCSharpAPI
     }
 
     public void scan(String url) {
-            clientApi.ascan.scan(this.apiKey, url, "true", "false", null, null, null, null);
+            clientApi.ascan.scan(this.apiKey, url, "true", "false", "", "", "", "");
     }
 
     /**
@@ -159,7 +159,7 @@ namespace ZapCSharpAPI
     {
             this.clientApi.ascan
                     .scanAsUser(this.apiKey,url, contextId, userId, recurse.ToString(),
-                            null, null, null);
+                            "", "", "");
     }
 
     public int getScanProgress(int id) {
@@ -228,36 +228,36 @@ namespace ZapCSharpAPI
         String contextNameString = contextName == null ? "Default Context" : contextName;
         String maxChildrenString = maxChildren.ToString();
         clientApi.spider
-                .scan(this.apiKey, url, maxChildrenString, recurse.ToString(), contextNameString, null);
+                .scan(this.apiKey, url, maxChildrenString, recurse.ToString(), contextNameString, "");
     }
 
     public void spider(string url) {
 
             clientApi.spider
-                    .scan(this.apiKey, url, null, null, null, null);
+                    .scan(this.apiKey, url, "", "", "", "");
     }
 
     public void spider(string url, bool recurse, string contextName) {
         //Something must be specified else zap throws an exception
         String contextNameString = contextName == null ? "Default Context" : contextName;
             clientApi.spider
-                    .scan(this.apiKey, url, null, recurse.ToString(), contextNameString, null);
+                    .scan(this.apiKey, url, "", recurse.ToString(), contextNameString, "");
     }
 
     public void spiderAsUser(string url, string contextId, string userId) {
         clientApi.spider
-                    .scanAsUser(this.apiKey, url, contextId, userId, null, null, null);
+                    .scanAsUser(this.apiKey, url, contextId, userId, "", "", "");
     }
 
     public void spiderAsUser(string url, string contextId, string userId, bool recurse) {
             clientApi.spider
-                    .scanAsUser(this.apiKey, url, contextId, userId, null, recurse.ToString(), null);
+                    .scanAsUser(this.apiKey, url, contextId, userId, "", recurse.ToString(), "");
     }
 
     public void spiderAsUser(String url, String contextId, String userId,
                              Int32 maxChildren, bool recurse) {
             clientApi.spider
-                    .scanAsUser(this.apiKey, url, contextId, userId, maxChildren.ToString(), recurse.ToString(), null);
+                    .scanAsUser(this.apiKey, url, contextId, userId, maxChildren.ToString(), recurse.ToString(), "");
     }
 
     public void excludeFromSpider(string regex) {
